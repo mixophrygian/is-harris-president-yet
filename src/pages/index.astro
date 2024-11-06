@@ -4,6 +4,7 @@ import LoadingDots from '../components/LoadingDots.astro'
 
 let res = await fetch("https://newsapi.org/v2/top-headlines?country=us&source=associated-press&apiKey=a3df0d80be434efd817549244871c506")
 let result = await res.json()
+
 function checkForHarrisVictory(articles: any) {
     const victoryKeywords = [
         'harris wins presidency',
@@ -13,7 +14,7 @@ function checkForHarrisVictory(articles: any) {
         'harris victory'
     ];
     
-    const electionArticles = articles.filter(article => {
+    const electionArticles = articles.filter((article: { title: string; description: string; }) => {
         const combinedText = (article.title + ' ' + article.description).toLowerCase();
         
         // Must mention Harris, must be about 2024 election, must indicate victory
